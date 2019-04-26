@@ -1,0 +1,11 @@
+{
+    "name" : "Syow" ,
+    "version" : "4.1.0",
+    "main" : "main.js",
+    "script" :{
+        "build_win" : "electron-packager . Syow --platform=win32 --arch=x64 --asar --icon=ico/logo --overwrite --electron-version=4.1.0" ,
+        "build_pi" : "electron-packager . Syow --platform=linux --arch=armv7l --asar --icon=ico/logo.png --overwrite --electron-version=3.1.3" ,
+        "build_linux" : "electron-packager . Syow --platform=linux --arch=x64 --asar --icon=ico/logo.png --prune=true --out=release-builds --overwrite --electron-version=4.1.0" ,
+        "build_all" : "electron-packager . Syow --all --all --asar --overwrite --electron-version=4.1.0" 
+    }
+}

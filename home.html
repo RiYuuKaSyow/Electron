@@ -14,10 +14,119 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style type="text/css">
+        #main{
+            position: absolute;
+            height:90%;
+            width: 90%;
+            top:10% ;
+            left: 10% ;
+            background: linear-gradient(to right , #EE82EE , #9400D3);
+            z-index: 1;
+        }
+        #row_bar{
+            width: 10vw;
+            height: 100vh;
+            background: linear-gradient(to bottom , #666 , #abc) ;
+            z-index: 0;
+        }
+        #col_bar{
+            position: absolute;
+            top:0%;
+            left: 10vw;
+            width: 90vw;
+            height: 100vh;
+            background: linear-gradient(to right , #666 , #abc) ;
+            z-index: 0;
+        }
+        .select{
+            position: relative;
+            margin-left: 1%;
+            margin-top: 1%;
+            padding-top: 2%;
+            width:30vh;
+            height: 30vh;
+            border-radius:999em;
+            background-color: rgba( 255, 255, 0 , 0.8);
+            font-size: 300%;
+            color: #ff0000 ;
+            text-align: center;
+        }
+        img{
+            position: absolute;
+            margin-left: 2%;
+            margin-top: 1%;
+            height: 10%;
+        }
+        .dance{
+            position:absolute;
+            animation-name:up_and_down;
+            animation-duration:2s;
+            animation-iteration-count: infinite;
+        }
+        .d1{
+            width:5%;
+            height: 5%;
+            background: white ;
+        }
+        .d2{
+            width:4%;
+            height: 4%;
+            background: blue ;
+        }
+        .d3{
+            margin-top: 1.5%;
+            width:3%;
+            height: 3%;
+            background: red ;
+        }
+        .d4{
+            margin-left: 3%;
+            margin-top: 2%;
+            width:2%;
+            height: 2%;
+            background: green ;
+        }
+        @keyframes up_and_down {
+            0%{ left:0%;top:0%; }
+            25%{left:95%;top:0%;}
+            50%{left:95%;top:5%;}
+            75%{left:0%;top:5%;}
+            100%{left:0%;top:0%;}       
+        }
+    </style>
+    <script type="text/javascript">
+        $(function(){
+            var i = 0 ;
+
+            $("#calculate_btn").click(function(){
+                $("#content").slideUp(200);
+                $("#content").load('html/calculate.html') ;    
+                $("#content").slideDown(200);
+            });
+            $("#home_img").click(function(){
+                location.replace('home.html');
+            });
+        });
+    </script>
 </head>
 <body>
-    <div class="">
-        <h1>hello world</h1>
+    <div id="row_bar">
+        <img id="home_img" src="img/home.png" alt="">
     </div>
+    <div id="col_bar">
+        <div class="d1 dance"></div><div class="d2 dance"></div>
+        <div class="d3 dance"></div><div class="d4 dance"></div>
+    </div>
+    <div id="main">
+        <div id="content">
+            <div id="home_content">
+                <div id="calculate_btn" class="select">
+                    小型<br>
+                    計算機
+                </div>
+            </div>
+        </div>
+    </div>    
 </body>
 </html>

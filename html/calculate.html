@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta http-equiv="UserContent-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="expires" content="0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+    <script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js" ></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <style type='text/css'>
+        .calculate{
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin-left: -20%;
+            margin-top: -22%;
+        }
+        #val{
+            font-size: 300%;
+        }
+        .btn-color{
+            text-align: center;
+            background-color:#cc8763 ;
+            color:#fff;
+            font-size: 300%;
+            width: 100%;
+        }
+        td{
+            width:138px;
+        }
+    </style>
+    <script type="text/javascript">
+        $(function(){
+            var val = '' ;
+            $("#num_table button").addClass('btn') ;
+            $("#num_table button").addClass('btn-color') ;
+            
+            for( var i = 2 ; i < 17 ; i++ ){
+                $("#num_table button:eq(" +i+ ")" ).click(function(){
+                    val += $(this).html() ;
+                    $("#val").val(val) ;
+                });
+            };
+            $("#clean").click(function(){
+                val = '' ;
+                $("#val").val(val) ;
+            });
+            $("#back").click(function(){
+                val = val.substr(0, val.length-1 )  ;
+                $("#val").val(val) ;
+            });
+            $("#equal").click(function(){
+                if(val){
+                    val = eval(val) ;
+                }  
+                $("#val").val(val) ;
+            });
+        });
+    </script>
+</head>
+<body>
+    
+    <div class="calculate">
+        <div class="text_val">
+            <input id="val" readonly="readonly" >
+        </div>
+        <table id="num_table">
+            <tr>
+                <td><button id="clean" type="button" name="button">C</button></td>
+                <td colspan="2"><button id="back" type="button" name="button">back</button></td>
+                <td><button type="button" name="button">/</button></td>
+            </tr>
+            <tr>
+                <td><button type="button" name="button">7</button></td>
+                <td><button type="button" name="button">8</button></td>
+                <td><button type="button" name="button">9</button></td>
+                <td><button type="button" name="button">*</button></td>
+            </tr>
+            <tr>
+                <td><button type="button" name="button">4</button></td>
+                <td><button type="button" name="button">5</button></td>
+                <td><button type="button" name="button">6</button></td>
+                <td><button type="button" name="button">-</button></td>
+            </tr>
+            <tr>
+                <td><button type="button" name="button">1</button></td>
+                <td><button type="button" name="button">2</button></td>
+                <td><button type="button" name="button">3</button></td>
+                <td><button type="button" name="button">+</button></td>
+            </tr>
+            <tr>
+                <td><button type="button" name="button">0</button></td>
+                <td><button type="button" name="button">.</button></td>
+                <td colspan="2"><button id="equal" type="button" name="button">=</button></td>
+            </tr>
+        </table>
+    </div>
+    
+</body>
+</html>

@@ -6,17 +6,19 @@ let mainwindow ;
 
 function createwindow(){
     mainwindow = new browser({
-        width:960,
-        height:540,
+        width:1280,
+        height:720,
         title:"Syow"
     });
-    mainwindow.Menu.setApplicationMenu(null) ;
+    electron.Menu.setApplicationMenu(null) ;
     mainwindow.webContents.openDevTools() ;
-    mainwindow.loadFile('home.html');
+    mainwindow.loadFile('html/time.html');
     mainwindow.on('closed',function(){
         mainwindow = null ;
     }) ;
 }
+
+//mainwindow.webContents.send('MsgfromMain', 'main-process-messages show') ;
 
 app.on('ready' , createwindow) ;
 

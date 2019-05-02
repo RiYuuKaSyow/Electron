@@ -50,7 +50,7 @@
             background-color: rgba( 255, 255, 0 , 0.8);
             font-size: 300%;
             color: #ff0000 ;
-            text-align: center;
+            text-align: center;            
         }
         img{
             position: absolute;
@@ -104,6 +104,11 @@
                 $("#content").load('html/calculate.html') ;    
                 $("#content").slideDown(200);
             });
+            $("#clock_btn").click(function(){
+                $("#content").slideUp(200);
+                $("#content").load('html/clock.html') ;    
+                $("#content").slideDown(200);
+            });
             $("#home_img").click(function(){
                 location.replace('home.html');
             });
@@ -124,6 +129,9 @@
                 <div id="calculate_btn" class="select">
                     小型<br>
                     計算機
+                </div>
+                <div id="clock_btn" class="select">
+                    <br>鬧鐘
                 </div>
             </div>
         </div>

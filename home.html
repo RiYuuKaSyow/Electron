@@ -16,12 +16,15 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <style type="text/css">
         #main{
+            display: flex;
+            justify-content: space-around;
+            align-content: space-around;
             position: absolute;
             height:90%;
             width: 90%;
             top:10% ;
             left: 10% ;
-            background: linear-gradient(to right , #EE82EE , #9400D3);
+            background-image: linear-gradient(to bottom, #a18cd1 0%, #fbc2eb 100%);
             z-index: 1;
         }
         #row_bar{
@@ -40,16 +43,14 @@
             z-index: 0;
         }
         .select{
-            position: relative;
-            margin-left: 1%;
-            margin-top: 1%;
-            padding-top: 2%;
-            width:30vh;
-            height: 30vh;
+            display: inline;
+            align-content: space-around;
+            width: 15vw;
+            height: 15vh;
             border-radius:999em;
-            background-color: rgba( 255, 255, 0 , 0.8);
-            font-size: 300%;
-            color: #ff0000 ;
+            background-image: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+            font-size: 222%;
+            color: #ee3 ;
             text-align: center;            
         }
         img{
@@ -58,81 +59,46 @@
             margin-top: 1%;
             height: 10%;
         }
-        .dance{
-            position:absolute;
-            animation-name:up_and_down;
-            animation-duration:2s;
-            animation-iteration-count: infinite;
-        }
-        .d1{
-            width:5%;
-            height: 5%;
-            background: white ;
-        }
-        .d2{
-            width:4%;
-            height: 4%;
-            background: blue ;
-        }
-        .d3{
-            margin-top: 1.5%;
-            width:3%;
-            height: 3%;
-            background: red ;
-        }
-        .d4{
-            margin-left: 3%;
-            margin-top: 2%;
-            width:2%;
-            height: 2%;
-            background: green ;
-        }
-        @keyframes up_and_down {
-            0%{ left:0%;top:0%; }
-            25%{left:95%;top:0%;}
-            50%{left:95%;top:5%;}
-            75%{left:0%;top:5%;}
-            100%{left:0%;top:0%;}       
-        }
+
     </style>
     <script type="text/javascript">
         $(function(){
-            var i = 0 ;
-
-            $("#calculate_btn").click(function(){
+            let i = 0 ;
+            
+            $("button").click(function(){
                 $("#content").slideUp(200);
-                $("#content").load('html/calculate.html') ;    
-                $("#content").slideDown(200);
-            });
-            $("#clock_btn").click(function(){
-                $("#content").slideUp(200);
-                $("#content").load('html/clock.html') ;    
+                $("#content").load('./html/' + $(this).attr('id') + '.html') ;    
                 $("#content").slideDown(200);
             });
             $("#home_img").click(function(){
-                location.replace('home.html');
+                $("body").load('./home.html') ; 
             });
+            
         });
     </script>
 </head>
 <body>
+    <div class="test">
+        
+    </div>
     <div id="row_bar">
         <img id="home_img" src="img/home.png" alt="">
     </div>
     <div id="col_bar">
-        <div class="d1 dance"></div><div class="d2 dance"></div>
-        <div class="d3 dance"></div><div class="d4 dance"></div>
+
     </div>
     <div id="main">
         <div id="content">
             <div id="home_content">
-                <div id="calculate_btn" class="select">
-                    小型<br>
-                    計算機
-                </div>
-                <div id="clock_btn" class="select">
-                    <br>鬧鐘
-                </div>
+                <button id="calculate" class="select">
+                    小型計算機
+                </button>
+                <button id="clock" class="select">
+                    鬧鐘
+                </button>
+                <button id="guess_number" class="select">
+                    幾A幾B
+                </button>
             </div>
         </div>
     </div>    

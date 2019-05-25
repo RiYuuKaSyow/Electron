@@ -25,7 +25,7 @@ function createwindow(){
     });
     Menu.setApplicationMenu(null) ;
     
-    //win.webContents.openDevTools() ;
+    win.webContents.openDevTools() ;
     win.loadFile('./home.html');
     win.on('minimize',function(){
         win.hide() ;

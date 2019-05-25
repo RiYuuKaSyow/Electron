@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta http-equiv="UserContent-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="expires" content="0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+    <script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js" ></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style type="text/css">
+        .text{
+            width: 45vw;
+            text-align: center;
+            font-size:300%;
+            color:#fff;
+        }
+        .rule{
+            width: 45vw;
+            text-align: center;
+            font-size:150%;
+            color:#fff;
+        }
+        #num{
+            text-align: center;
+            font-size: 666%;
+            width: 30vw;
+            margin-left: 13vw;
+        }
+        #start{
+            font-size: 200%;
+            margin-top: 1vh;
+        }
+        .btn-color{
+            text-align: center;
+            background-color:#cc8763 ;
+            color:#fff;
+            font-size: 150%;
+            width: 100%;
+        }
+        td{
+            width:78px;
+        }
+        #num_table{
+            margin-left: 18vw;
+        }
+    </style>
+    <script type="text/javascript">
+        $(function(){
+            $("#num_table button").addClass('btn') ;
+            $("#num_table button").addClass('btn-color') ;
+            function getRand(){
+                let ret_num = new Array();
+                let ref = 0 ;
+                for( let i = 0 ; i < 4 ; i++ ){
+                    let num =  Math.random()*10 ;
+                    num = Math.floor(num) ; 
+                    for( let j = 0 ; j < i ; j++ ){
+                        if( ret_num[j] === num ){
+                            i--;
+                            ref = 1 ;
+                            break;
+                        }else{
+                            ref = 0 ;
+                        }
+                    }
+                    if( ref === 0 ){
+                        ret_num[i] = num ; 
+                    }                
+                }
+                return ret_num ;
+            }
+            function check( ans , val ){
+                let num = new Array() ;
+                let res_A = 0 , res_B = 0 ;
+                let str="" ;
+                for( let i = 3 ; i >= 0 ; i-- , val/=10 ){
+                    num[i] = Math.floor(val % 10) ; 
+                }
+                for( let i = 0 ; i < 4 ; i++ ){
+                    for( let j = 0 ; j < 4 ; j++){
+                        if( ans[i] === num[j] && i === j ){
+                            res_A++ ;
+                        }else if( ans[i] === num[j] ){
+                            res_B++ ;
+                        };
+                    }
+                }
+                if( res_A != 4 ){
+                    str = res_A + " A | " + res_B + " B" ;
+                }else{
+                    str = "恭喜猜對了!" ;
+                };                
+                return str ;
+            }
+            let rand_val , val;
+            $("#start").click(function(){
+                $("#main").show();
+                rand_val = getRand();
+                $("#start").html("重新開始");
+                $("#res").html("0 A | 0 B") ;
+                val ='' ;
+                $("input").val(val);
+            });
+            
+            
+            for( var i = 0 ; i < 10 ; i++ ){
+                $("#num_table button:eq(" +i+ ")" ).click(function(){
+                    if( $("#num").val().length < 4 ){
+                        val += $(this).html() ;
+                        $("#num").val(val) ;
+                    }            
+                    if( $("input").val().length === 4 ){
+                        $("#res").html(  check( rand_val ,$("input").val() ) );
+                    }
+                });
+            };
+            $("#clean").click(function(){
+                val = '' ;
+                $("#num").val(val) ;
+            });
+            $("#back").click(function(){
+                val = val.substr(0, val.length-1 )  ;
+                $("#num").val(val) ;
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="game_frame" class="container">
+        <div class="row">
+            <div class="col-3">
+                <button id="start" class="btn btn-info" type="button" name="button">
+                    開始
+                </button>
+            </div>    
+            <div class="col-9 text">
+                輸入0~9總共四個數字
+            </div>
+        </div>
+        <div  class="row">
+            <div class="col-12">
+                <input id="num" type="text" name="" value="" maxlength="4" readonly="readonly">
+            </div>
+        </div>
+        <table id="num_table">
+            <tr>
+                <td><button type="button" name="button">7</button></td>
+                <td><button type="button" name="button">8</button></td>
+                <td><button type="button" name="button">9</button></td>
+            </tr>
+            <tr>
+                <td><button type="button" name="button">4</button></td>
+                <td><button type="button" name="button">5</button></td>
+                <td><button type="button" name="button">6</button></td>
+            </tr>
+            <tr>
+                <td><button type="button" name="button">1</button></td>
+                <td><button type="button" name="button">2</button></td>
+                <td><button type="button" name="button">3</button></td>
+            </tr>
+            <tr>
+                <td><button type="button" name="button">0</button></td>
+                <td><button id="clean" type="button" name="button">C</button></td>
+                <td colspan="2"><button id="back" type="button" name="button">back</button></td>
+            </tr>
+        </table>
+        <div class="row">
+            <div  id="res"  class="col-12 text">
+                0 A | 0 B
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 rule">
+                A - 位置及數字都正確 。B - 數字正確，位置不對 
+            </div>
+        </div>
+        
+    </div>
+    
+    
+</body>
+</html>

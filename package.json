@@ -10,6 +10,6 @@
         "build_all": "electron-packager . Syow --all --all --asar --overwrite --electron-version=4.1.0"
     },
     "dependencies": {
-        "moment": "^2.24.0"
+        "moment": "^2.29.2"
     }
 }
